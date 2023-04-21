@@ -1,0 +1,23 @@
+name: KSOC Image Scan
+description: KSOC scans for CVEs in your images as part of your GitHub Actions CI workflow.
+author: KSOC
+branding:
+  icon: alert-triangle
+  color: green
+
+inputs:
+  fail_on_severity:
+    required: false
+    description: "The severity level at which to fail the workflow. Valid values are: negligible, low, medium, high, critical."
+    default: high
+  image:
+    required: false
+    description: "Image to scan."
+
+runs:
+  using: docker
+  image: docker://anchore/grype:v0.61.0
+  args:
+    - ${{ inputs.image }}
+    - -f
+    - ${{ inputs.fail_on_severity }}
