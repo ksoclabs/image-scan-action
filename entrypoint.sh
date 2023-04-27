@@ -1,0 +1,5 @@
+#!/bin/sh -l
+
+[ -z ${FAIL_ON_SEVERITY} ] || PARAM_FAIL_ON_SEVERITY="-f ${FAIL_ON_SEVERITY}"
+
+/grype ${PARAM_FAIL_ON_SEVERITY} ${IMAGE}

@@ -9,15 +9,13 @@ inputs:
   fail_on_severity:
     required: false
     description: "The severity level at which to fail the workflow. Valid values are: negligible, low, medium, high, critical."
-    default: high
   image:
     required: false
     description: "Image to scan."
 
 runs:
   using: docker
-  image: docker://anchore/grype:v0.61.0
-  args:
-    - ${{ inputs.image }}
-    - -f
-    - ${{ inputs.fail_on_severity }}
+  image: Dockerfile
+  env:
+    FAIL_ON_SEVERITY: ${{ inputs.fail_on_severity }}
+    IMAGE: ${{ inputs.image }}
