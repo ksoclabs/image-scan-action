@@ -27,14 +27,15 @@ jobs:
           push: false
           load: true
       - name: KSOC Image Scan
-        uses: ksoclabs/image-scan-action@v0.0.1
+        uses: ksoclabs/image-scan-action@v0.0.2
         with:
           image: "localbuild/testimage:latest"
+          fail_on_severity: "medium"
 ```
 
-Above example shows how to build a local image and scan it for CVEs. By default, it will fail if CVEs with severity `high` or `critical` are found. This can be changed by setting the `fail_on_severity` input to a different severity level.
+Above example shows how to build a local image and scan it for CVEs. It will fail the workflow if any CVE with `medium` severity is found. If `fail_on_severity` input is not provided, the action won't fail.
 
 ## Inputs
 
 - `image`: The image to scan. This is a required input.
-- `fail_on_severity`: The severity level that will cause the action to fail. If not provided, the action will fail if `high` or `critical` severity CVEs are found.
+- `fail_on_severity`: The severity level that will cause the action to fail. If not provided, the action doesn't fail. Possible values are `negligible`, `low`, `medium`, `high` and `critical`.
