@@ -12,4 +12,4 @@ if [ ! -z "${IGNORE_CVES}" ]; then
   PARAM_CONFIG="-c /config.yaml"
 fi
 
-/grype -o template -t /output_with_summary.tmpl ${PARAM_CONFIG} ${PARAM_FAIL_ON_SEVERITY} ${IMAGE}
+/grype --add-cpes-if-none -o template -t /output_with_summary.tmpl ${PARAM_CONFIG} ${PARAM_FAIL_ON_SEVERITY} ${IMAGE}
