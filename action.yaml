@@ -9,17 +9,25 @@ inputs:
   fail_on_severity:
     required: false
     description: "The severity level at which to fail the workflow. Valid values are: negligible, low, medium, high, critical."
+  format:
+    required: false
+    description: "The format of the output. Valid values are: table, sarif."
+    default: table
   ignore_cves:
     required: false
     description: "List of CVEs to ignore."
   image:
     required: false
     description: "Image to scan."
+outputs:
+  sarif:
+    description: "Path to a SARIF report file for the image"
 
 runs:
   using: docker
   image: Dockerfile
   env:
     FAIL_ON_SEVERITY: ${{ inputs.fail_on_severity }}
+    FORMAT: ${{ inputs.format }}
     IGNORE_CVES: ${{ inputs.ignore_cves }}
     IMAGE: ${{ inputs.image }}
