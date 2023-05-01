@@ -4,8 +4,10 @@
 
 if [ ! -z "${IGNORE_CVES}" ]; then
   echo "ignore:" > /config.yaml
+  echo "Ignored CVEs:"
   for cve in ${IGNORE_CVES}; do
     echo "  - vulnerability: $cve" >> /config.yaml
+    echo " - $cve"
   done
   PARAM_CONFIG="-c /config.yaml"
 fi
