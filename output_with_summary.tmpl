@@ -1,4 +1,8 @@
+{{- if .Matches }}
 Vulnerabilities:
+{{- else }}
+No vulnerabilities found.
+{{- end }}
 {{- $negligible := 0 }}
 {{- $low := 0 }}
 {{- $medium := 0 }}
@@ -21,4 +25,6 @@ Vulnerabilities:
     {{- $total = add1 $total }}
 {{- end}}
 
+{{- if .Matches }}
 Total: {{ $total }} (NEGLIGIBLE: {{ $negligible }}, LOW: {{ $low }}, MEDIUM: {{ $medium }}, HIGH: {{ $high }}, CRITICAL: {{ $critical }})
+{{- end }}

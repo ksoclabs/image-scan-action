@@ -9,6 +9,9 @@ inputs:
   fail_on_severity:
     required: false
     description: "The severity level at which to fail the workflow. Valid values are: negligible, low, medium, high, critical."
+  ignore_cves:
+    required: false
+    description: "List of CVEs to ignore."
   image:
     required: false
     description: "Image to scan."
@@ -18,4 +21,5 @@ runs:
   image: Dockerfile
   env:
     FAIL_ON_SEVERITY: ${{ inputs.fail_on_severity }}
+    IGNORE_CVES: ${{ inputs.ignore_cves }}
     IMAGE: ${{ inputs.image }}
