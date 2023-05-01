@@ -1,24 +1,35 @@
+{{- if not .Matches }}
+No vulnerabilities found.
+{{- else }}
 Vulnerabilities:
-{{- $negligible := 0 }}
-{{- $low := 0 }}
-{{- $medium := 0 }}
-{{- $high := 0 }}
-{{- $critical := 0 }}
-{{- $total := 0 }}
-{{- range .Matches}}
-    {{ .Artifact.Name }} (type {{ .Artifact.Type }}) version {{ .Artifact.Version }}: {{ .Vulnerability.ID }} severity {{ .Vulnerability.Severity }}, link: {{ .Vulnerability.DataSource }}
-    {{- if eq .Vulnerability.Severity "Negligible" }}
-        {{- $negligible = add1 $negligible }}
-    {{- else if eq .Vulnerability.Severity "Low"}}
-        {{- $medium = add1 $low }}
-    {{- else if eq .Vulnerability.Severity "Medium"}}
-        {{- $medium = add1 $medium }}
-    {{- else if eq .Vulnerability.Severity "High"}}
-        {{- $medium = add1 $high }}
-    {{- else if eq .Vulnerability.Severity "Critical"}}
-        {{- $medium = add1 $critical }}
+    {{- $negligible := 0 }}
+    {{- $low := 0 }}
+    {{- $medium := 0 }}
+    {{- $high := 0 }}
+    {{- $critical := 0 }}
+    {{- $total := 0 }}
+    {{- $len := 0 }}
+    {{- range .Matches}}
+        {{- if gt (len .Artifact.Name) $len }}
+            {{- $len = len .Artifact.Name }}
+        {{- end }}
     {{- end }}
-    {{- $total = add1 $total }}
-{{- end}}
+{{ printf "%-*s" $len "Package Name" }} | {{ printf "%-10s" "Type" }} | {{ printf "%-10s" "Version" }} | {{ printf "%-20s" "Vulnerability" }} | {{ printf "%-10s" "Severity" }} | Link
+    {{- range .Matches}}
+{{ printf "%-*s" $len .Artifact.Name }} | {{ printf "%-10s" .Artifact.Type }} | {{ printf "%-10s" .Artifact.Version }} | {{ printf "%-20s" .Vulnerability.ID }} | {{ printf "%-10s" .Vulnerability.Severity }} | {{ .Vulnerability.DataSource }}
+        {{- if eq .Vulnerability.Severity "Negligible" }}
+            {{- $negligible = add1 $negligible }}
+        {{- else if eq .Vulnerability.Severity "Low"}}
+            {{- $low = add1 $low }}
+        {{- else if eq .Vulnerability.Severity "Medium"}}
+            {{- $medium = add1 $medium }}
+        {{- else if eq .Vulnerability.Severity "High"}}
+            {{- $high = add1 $high }}
+        {{- else if eq .Vulnerability.Severity "Critical"}}
+            {{- $critical = add1 $critical }}
+        {{- end }}
+        {{- $total = add1 $total }}
+    {{- end}}
 
 Total: {{ $total }} (NEGLIGIBLE: {{ $negligible }}, LOW: {{ $low }}, MEDIUM: {{ $medium }}, HIGH: {{ $high }}, CRITICAL: {{ $critical }})
+{{- end }}
