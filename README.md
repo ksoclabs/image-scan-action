@@ -1,4 +1,6 @@
 # KSOC Image Scan Action
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action?ref=badge_shield)
+
 
 KSOC scans for CVEs in your images as part of your GitHub Actions CI workflow.
 
@@ -89,3 +91,7 @@ jobs:
 ## Outputs
 
 - `sarif`: Location of the SARIF output file of the action. This output is only available if `format` input is set to `sarif`.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action?ref=badge_large)
