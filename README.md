@@ -1,5 +1,9 @@
 # KSOC Image Scan Action
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ksoclabs/image-scan-action)
+![Hex.pm](https://img.shields.io/hexpm/l/apa)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action?ref=badge_shield)
+
 KSOC scans for CVEs in your images as part of your GitHub Actions CI workflow.
 
 This action is using Grype to scan for CVEs in given image.
@@ -89,3 +93,7 @@ jobs:
 ## Outputs
 
 - `sarif`: Location of the SARIF output file of the action. This output is only available if `format` input is set to `sarif`.
+
+## Contributing
+
+Guard Action is Apache 2.0 licensed and accepts contributions via GitHub pull requests. See the [CONTRIBUTING](CONTRIBUTING.md) file for details.
