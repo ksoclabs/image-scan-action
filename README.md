@@ -94,6 +94,9 @@ jobs:
 
 - `sarif`: Location of the SARIF output file of the action. This output is only available if `format` input is set to `sarif`.
 
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fksoclabs%2Fimage-scan-action?ref=badge_large)
+
 ## Contributing
 
 Guard Action is Apache 2.0 licensed and accepts contributions via GitHub pull requests. See the [CONTRIBUTING](CONTRIBUTING.md) file for details.
