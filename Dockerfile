@@ -1,4 +1,4 @@
-FROM us.gcr.io/ksoc-public/image-scan:0.0.2
+FROM us.gcr.io/ksoc-public/image-scan:0.0.3
 
 RUN apk add --no-cache jq
 
